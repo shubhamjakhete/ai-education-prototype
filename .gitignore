@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+.DS_Store
+*.tsbuildinfo
+/build-note.md
+/index.html
+/package.json
+/package-lock.json
+/vite.config.ts
+/tsconfig.json

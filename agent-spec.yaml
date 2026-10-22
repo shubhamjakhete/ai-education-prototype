@@ -1,0 +1,106 @@
+# Agent spec: the helper we will build
+#
+# Fill this in from your agent card. Each "# Card:" line names the card field it comes from.
+# Composite scenarios only: no real names or student records. Replace PII with synthetic information.
+#
+# YAML tips:
+#   - Indent with spaces, never tabs. Keep the indentation shown here.
+#   - Put text in "double quotes", especially text containing a colon (:) or a hash (#).
+#   - Write "Yes" and "No" in quotes, otherwise they may be read as true/false.
+#   - Add list items as new lines starting with "- ". Delete empty "" items you don't use.
+
+# Card: Helper name / Group / Scenario / Helper # (from crew sheet)
+helperName: ""
+group: ""
+scenario: ""
+helperNumber: ""
+
+# Who the learner is and the moment this helper is for (from your moment sheet).
+learnerAndMoment: ""
+
+# Card: How we would know it worked. From: Desired outcome.
+# What would be true for the learner? Make it something you could observe.
+desiredOutcome: ""
+successMeasure: ""
+
+# Card: When it starts. From: Signals. What makes the helper begin?
+trigger: ""
+
+# Card: What it uses. From: Inputs. What information or materials does it need?
+allowedInputs:
+  - ""
+
+# Information the helper must NOT use, even if it is available.
+prohibitedInputs:
+  - ""
+
+# Card: What it may know about the learner. From: the learner profile.
+# Only lines the student marked "Yes". Leave everything else out.
+learnerProfileDetailsAllowed:
+  - ""
+
+# Card: What it does. From: the "tool" steps. List each step.
+steps:
+  - ""
+
+# Card: What it hands back to a person. From: the "person" steps.
+# Which decisions stay with people, and with whom?
+humanDecisions:
+  - decision: ""
+    madeBy: ""   # e.g. teacher, parent, student
+
+# Card: Who checks its work before anything happens.
+# A person who reviews before it reaches the learner or family.
+humanReviewer: ""
+
+# Card: What it produces, and for whom.
+# What a person actually receives: a note, a draft, a reminder, a view.
+output:
+  description: ""
+  # The fields below are fixed by the workshop rules. Don't change them.
+  firstRecipient: "Educator or parent reviewer"
+  recipientAfterReview: "Learner, only if the reviewer explicitly approves showing it"
+  editableDraft: true
+  hideFromLearnerUntilReview: true
+
+# Card: What the student can see, change, or say no to.
+learnerControls:
+  canSee:
+    - ""
+  canChange:
+    - ""
+  canSayNoTo:
+    - ""
+
+# Card: What the family can see, change, or say no to.
+familyControls:
+  canSee:
+    - ""
+  canChange:
+    - ""
+  canSayNoTo:
+    - ""
+
+# Card: What it passes to other helpers. From: Dependencies and the crew sheet handoffs.
+dependenciesAndHandoffs:
+  - ""
+
+# Learner needs the prototype must support, e.g. screen reader, switch access,
+# captions, audio, larger text. Only list what the learner or group has stated.
+accessibilityNeeds:
+  - ""
+
+# Card: It must never. At least three. Note which role said each one.
+mustNever:
+  - rule: ""
+    raisedBy: ""   # e.g. student, parent, teacher
+  - rule: ""
+    raisedBy: ""
+  - rule: ""
+    raisedBy: ""
+
+# Situations to try with the prototype. Claude Code turns these into tests.
+tests:
+  expectedCase: ""             # A normal situation where the helper should work.
+  missingOrUncertainInput: ""  # Something is missing or unclear: it should ask, not guess.
+  boundaryCase: ""             # Tries to break one "must never" rule: it should refuse.

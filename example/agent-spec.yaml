@@ -1,0 +1,128 @@
+# Agent spec: EXAMPLE, filled in from scenario 15 (Malia, field trip agenda checker)
+#
+# A worked example of agent-spec.yaml. The scenario is a composite: the name, school and
+# details are made up and do not describe a real student.
+# Lines marked "CONFIRM" are not stated in the scenario. A real table would settle them
+# by asking the students and parents first.
+
+# Card: Helper name / Group / Scenario / Helper # (from crew sheet)
+helperName: "Field trip agenda checker"
+group: "Example (facilitator demo)"
+scenario: "Malia, age 9, spina bifida"
+helperNumber: ""   # Not given in the scenario.
+
+# Who the learner is and the moment this helper is for (from your moment sheet).
+learnerAndMoment: "A fourth grade teacher is planning a pond study trip to Willow Creek Nature Center for 26 students, two weeks out. One of them is Malia, 9, who uses a wheelchair and moves on her own. Today, access gets checked late and by families, and on the day the fix is often that a student rides separately or waits while the class does the activity."
+
+# Card: How we would know it worked. From: Desired outcome.
+desiredOutcome: "Every student, including Malia, does the same trip as the class: arriving together, reaching the pond, and collecting samples together, because barriers were found and fixed in the plan two weeks early."
+successMeasure: "In one pass, the teacher gets a revised agenda in which every flagged barrier has either a whole-class fix they accepted or an open question marked to check, before anyone calls the nature center."
+
+# Card: When it starts. From: Signals. What makes the helper begin?
+trigger: "The teacher uploads or pastes a made-up field trip agenda, e.g. \"Pond study, Thursday, Willow Creek Nature Center\"."
+
+# Card: What it uses. From: Inputs. What information or materials does it need?
+allowedInputs:
+  - "The teacher's made-up trip agenda: times, places, activities, transport, meals, restroom stops"
+  - "Made-up learner profiles for several students in the class (Malia plus a few others), limited to lines each family marked \"Yes\""
+  - "Made-up nature center information: its one-line website accessibility note, route and trail descriptions, restroom locations"
+
+# Information the helper must NOT use, even if it is available.
+prohibitedInputs:
+  - "Any profile line not marked \"Yes\""
+  - "Diagnoses, medical or care-plan details"
+  - "Real names, student records, or contact details"
+
+# Card: What it may know about the learner. From: the learner profile.
+# Several students, so this lists the kinds of details allowed, not one student's lines.
+# CONFIRM: the scenario has no profiles with "Yes" marks; each family would mark these.
+learnerProfileDetailsAllowed:
+  - "Mobility and transport needs (e.g. Malia: uses a wheelchair, needs a bus with a lift, moves on her own and doesn't want to be pushed unless she asks)"
+  - "Sensory needs (e.g. noise, light, crowds)"
+  - "Timing needs (e.g. breaks, extra transition time)"
+  - "How the student prefers to get information (e.g. pictures, maps, read aloud)"
+
+# Card: What it does. From: the "tool" steps. List each step.
+steps:
+  - "Split the uploaded agenda into items: time, place, activity, transport"
+  - "Check each item against each student's allowed profile needs"
+  - "Flag each item as a likely barrier (e.g. bus has no lift, steps on the path to the pond) or needs checking (the agenda or site info doesn't say, e.g. \"mostly accessible\", no restroom details), naming the item and the need it affects"
+  - "For each flag, propose a change to the plan for the whole class, so everyone keeps doing the same activity together (e.g. book a lift-equipped bus for everyone, use the boardwalk route to the pond)"
+  - "Turn each needs-checking flag into a question for the teacher to confirm; never assume the answer"
+  - "Flag the words: confined, wheelchair-bound, can't, sit out, wait here"
+  - "Show the original and revised agenda side by side, with each change accepted, edited or rejected by the teacher"
+  - "Produce a clean revised agenda containing no student names or needs"
+
+# Card: What it hands back to a person. From: the "person" steps.
+humanDecisions:
+  - decision: "Accept, edit or reject each proposed change"
+    madeBy: "teacher"
+  - decision: "Confirm open questions with the nature center and transportation office, and share the revised agenda"
+    madeBy: "teacher"
+  - decision: "Which profile lines the helper may use"
+    madeBy: "each family, with their student"
+  - decision: "Anything involving care on the trip"
+    madeBy: "school nurse, with the family"
+
+# Card: Who checks its work before anything happens.
+humanReviewer: "The teacher reviews every flag and change before the revised agenda is used. A family can review the flags about their own child on request."
+
+# Card: What it produces, and for whom.
+output:
+  description: "For the teacher only: a flag report linking each agenda item to the needs it affects, with proposed whole-class changes and open questions. After the teacher approves: a clean revised agenda with no student names or needs, safe to share with chaperones, the class and the nature center."
+  # The fields below are fixed by the workshop rules. Don't change them.
+  firstRecipient: "Educator or parent reviewer"
+  recipientAfterReview: "Learner, only if the reviewer explicitly approves showing it"
+  editableDraft: true
+  hideFromLearnerUntilReview: true
+
+# Card: What the student can see, change, or say no to.
+# CONFIRM: not stated in the scenario.
+learnerControls:
+  canSee:
+    - "The approved revised agenda, like the rest of the class"
+  canChange:
+    - "Which of their profile lines are marked \"Yes\", with their family"
+  canSayNoTo:
+    - "Having their needs used in the check at all"
+
+# Card: What the family can see, change, or say no to.
+familyControls:
+  canSee:
+    - "The flags and proposed changes about their own child, on request"
+  canChange:
+    - "Which profile lines are marked \"Yes\""
+  canSayNoTo:
+    - "Any use of their child's profile"
+    - "Any detail about their child going beyond the teacher"
+
+# Card: What it passes to other helpers. From: Dependencies and the crew sheet handoffs.
+# No other helpers in this scenario; these are handoffs to people, done by the teacher.
+dependenciesAndHandoffs:
+  - "Open questions go to the teacher to check with the nature center"
+  - "Transport changes go to the transportation office"
+  - "Care questions go to the school nurse"
+
+# Needs for the people using the prototype. Here that is mainly the teacher.
+accessibilityNeeds:
+  - "Keyboard operation and clear labels for screen readers (workshop baseline)"
+  - "Changes shown with text labels such as \"Added\" and \"Removed\", not color alone"
+
+# Card: It must never. The scenario doesn't say which role raised each one.
+mustNever:
+  - rule: "Fix a barrier by separating a student from the class (a separate van, waiting at a bench, a different activity)"
+    raisedBy: "scenario (Malia wants to do what the class does)"
+  - rule: "Present unknown access details as confirmed"
+    raisedBy: "demo notes (role not stated)"
+  - rule: "Put student names, needs or medical details in the revised agenda or anything shared outside the teacher's view"
+    raisedBy: "scenario (family worries about oversharing)"
+  - rule: "Use any profile line not marked \"Yes\""
+    raisedBy: "workshop rules"
+  - rule: "Change the agenda or send anything without the teacher accepting it"
+    raisedBy: "demo notes (role not stated)"
+
+# Situations to try with the prototype. Claude Code turns these into tests.
+tests:
+  expectedCase: "The teacher uploads an agenda with a school bus, a welcome talk, a path with steps down to the pond, and lunch. The helper flags the bus and the steps for Malia's mobility needs, proposes a lift-equipped bus and a step-free route for the whole class, and holds every change for the teacher."
+  missingOrUncertainInput: "The agenda has no restroom details and the site says only \"mostly accessible\". The helper marks both as needs checking, adds a question for each, and doesn't claim they're accessible."
+  boundaryCase: "A proposed fix would have Malia wait at a bench while the class goes to the pond. The helper must not offer it, and the clean revised agenda must contain no student names or needs."

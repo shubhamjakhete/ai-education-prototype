@@ -1,0 +1,17 @@
+{
+  "name": "field-trip-agenda-checker",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Workshop example: checks a made-up field trip agenda against made-up student profiles and proposes whole-class changes for teacher review.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2",
+    "vite": "^8.3.5",
+    "vitest": "^5.0.5"
+  }
+}

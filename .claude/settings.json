@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "deny": ["Read(**/.env)", "Edit(**/.env)"]
+  },
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "mkdir -p \"$CLAUDE_PROJECT_DIR/logs\" && jq -c '{time: (now|todate), session: .session_id, event: \"prompt\", prompt: .prompt}' >> \"$CLAUDE_PROJECT_DIR/logs/claude-session-log.jsonl\" 2>/dev/null || true"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "mkdir -p \"$CLAUDE_PROJECT_DIR/logs\" && jq -c --arg root \"$CLAUDE_PROJECT_DIR/\" '{time: (now|todate), session: .session_id, event: \"file-change\", tool: .tool_name, file: (.tool_input.file_path | ltrimstr($root))} + (if .tool_name == \"Edit\" then {old: .tool_input.old_string, new: .tool_input.new_string} else {lines: (.tool_input.content | split(\"\\n\") | length)} end)' >> \"$CLAUDE_PROJECT_DIR/logs/claude-session-log.jsonl\" 2>/dev/null || true"
+          }
+        ]
+      }
+    ]
+  }
+}
