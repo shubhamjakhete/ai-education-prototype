@@ -1,0 +1,17 @@
+{
+  "name": "my-operation-captain",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Workshop prototype: student check-in, needs introduction, and strategy plan with caregiver and case manager review (fictional data only).",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "test": "vitest run --dir src"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2",
+    "vite": "^8.3.5",
+    "vitest": "^5.0.5"
+  }
+}
