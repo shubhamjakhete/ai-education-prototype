@@ -1,47 +1,67 @@
 # Agent spec: the helper we will build
-#
-# Fill this in from your agent card. Each "# Card:" line names the card field it comes from.
-# Composite scenarios only: no real names or student records. Replace PII with synthetic information.
-#
-# YAML tips:
-#   - Indent with spaces, never tabs. Keep the indentation shown here.
-#   - Put text in "double quotes", especially text containing a colon (:) or a hash (#).
-#   - Write "Yes" and "No" in quotes, otherwise they may be read as true/false.
-#   - Add list items as new lines starting with "- ". Delete empty "" items you don't use.
+# Group 5, Helper 1 — PROPOSED SPEC FOR COLLABORATOR CONFIRMATION
+# Composite scenario only. Do not enter real student, family, or school records.
+# This helper does ONE task: prepare an adult-approved "Where can I ask for help?" card.
+# It does not plan assignments, assess learning, or coordinate staff automatically.
 
-# Card: Helper name / Group / Scenario / Helper # (from crew sheet)
-helperName: ""   # TODO: not in pasted text; group to supply
-group: ""
-scenario: ""
-helperNumber: ""
+# Card: Helper name / Group / Scenario / Helper #
+helperName: "operation_helper"
+group: "5"
+scenario: "Sam, age 12, fictional return-to-school scenario"
+helperNumber: "1"
 
-# Who the learner is and the moment this helper is for (from your moment sheet).
-learnerAndMoment: ""   # TODO: not in pasted text; group to supply (fictional learner "Sam")
+# Who the learner is and the moment this helper is for.
+learnerAndMoment: >-
+  Sam is a fictional 12-year-old seventh grader returning to school after
+  a long absence related to treatment. He has six teachers, is concerned
+  about asking for help, and does not have a clearly identified school
+  point of contact. At the return-to-school orientation, he needs an easy
+  way to know which adult he can approach, where or how to reach them,
+  and what kinds of school questions he can ask. Medical details are
+  background context, not inputs used by this helper.
 
-# Card: How we would know it worked. From: Desired outcome.
-# What would be true for the learner? Make it something you could observe.
-desiredOutcome: ""   # TODO: not in pasted text; group to supply
-successMeasure: ""
+# What would be true for the learner? Make it observable.
+desiredOutcome: >-
+  Sam can privately find an agreed school support contact, understand
+  how to ask that person for help, and review the information at his
+  own pace without having to disclose his medical history.
+successMeasure: >-
+  In a simulated walkthrough using a released card, the learner can
+  identify the approved contact's role, how to reach that contact, and
+  one example of when to ask them for help. An adult reviewer confirms
+  those details match the supplied fictional school information.
 
-# Card: When it starts. From: Signals. What makes the helper begin?
-trigger: ""   # TODO: not in pasted text; group to supply
+# Card: When it starts.
+trigger: >-
+  A designated adult explicitly requests a help-contact card during
+  return-to-school planning and supplies fictional, school-confirmed
+  contact instructions.
 
-# Card: What it uses. From: Inputs. What information or materials does it need?
+# Card: What it uses. No external system access.
 allowedInputs:
-  - ""   # TODO: not in pasted text; group to supply
+  - "Fictional, educator-confirmed name or role of ONE primary school support contact."
+  - "Fictional, educator-confirmed way to reach that contact, such as a room or school-approved in-person procedure."
+  - "Fictional description of school questions the contact can help with."
+  - "Fictional availability or backup contact details, only if explicitly supplied and confirmed by the adult."
+  - "Exact learner preferences explicitly marked 'Yes' on the learner profile, if subsequently provided and approved."
 
 # Information the helper must NOT use, even if it is available.
 prohibitedInputs:
-  - ""   # TODO: not in pasted text; group to supply
+  - "Real student names, records, grades, attendance records, contact information, or identifiers."
+  - "Real medical records, treatment information, diagnoses, or clinical assessments."
+  - "Learner profile lines not explicitly marked 'Yes'."
+  - "Unapproved reading levels, math assessments, behavioral labels, or inferred learning abilities."
+  - "Nonverbal, emotional, or health signals inferred from observation, sensors, or response speed."
+  - "Unverified staff assignments, room locations, support arrangements, or contact details."
 
-# Card: What it may know about the learner. From: the learner profile.
-# Only lines the student marked "Yes". Leave everything else out.
-learnerProfileDetailsAllowed:
-  - ""   # TODO: not in pasted text; only lines the learner marked "Yes"
+# Card: What it may know about the learner.
+# The notes listed candidate information, but no exact Yes-marked profile lines.
+# Do not insert any of those candidates until consent is confirmed.
+learnerProfileDetailsAllowed: []
 
-# Card: What it does. From: the "tool" steps. List each step.
+# Card: What it does. Keep it to one small task.
 steps:
-  - "1. TODO: step 1 was not in the pasted text; group to supply (likely: receive the adult-entered support contact details)."
+  - "1. Accept the adult's fictional, confirmed support-contact information."
   - "2. Check for a primary contact role and a usable way to reach that person."
   - "3. If required details are missing or conflict, flag them for the adult; do not fabricate a contact or produce a releasable card."
   - "4. Draft a short 'Where can I ask for help?' card containing the contact role, how to reach them, and what they can help with, using only supplied facts."
