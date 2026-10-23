@@ -1,166 +1,119 @@
 # Agent spec: the helper we will build
-# Group 5, Helper 1 — PROPOSED SPEC FOR COLLABORATOR CONFIRMATION
-# Composite scenario only. Do not enter real student, family, or school records.
-# This helper does ONE task: prepare an adult-approved "Where can I ask for help?" card.
-# It does not plan assignments, assess learning, or coordinate staff automatically.
+#
+# Fill this in from your agent card. Each "# Card:" line names the card field it comes from.
+# Composite scenarios only: no real names or student records. Replace PII with synthetic information.
+#
+# YAML tips:
+#   - Indent with spaces, never tabs. Keep the indentation shown here.
+#   - Put text in "double quotes", especially text containing a colon (:) or a hash (#).
+#   - Write "Yes" and "No" in quotes, otherwise they may be read as true/false.
+#   - Add list items as new lines starting with "- ". Delete empty "" items you don't use.
 
-# Card: Helper name / Group / Scenario / Helper #
-helperName: "operation_helper"
+# Card: Helper name / Group / Scenario / Helper # (from crew sheet)
+helperName: "My operation captain"
 group: "5"
-scenario: "Sam, age 12, fictional return-to-school scenario"
+scenario: ""
 helperNumber: "1"
 
-# Who the learner is and the moment this helper is for.
-learnerAndMoment: >-
-  Sam is a fictional 12-year-old seventh grader returning to school after
-  a long absence related to treatment. He has six teachers, is concerned
-  about asking for help, and does not have a clearly identified school
-  point of contact. At the return-to-school orientation, he needs an easy
-  way to know which adult he can approach, where or how to reach them,
-  and what kinds of school questions he can ask. Medical details are
-  background context, not inputs used by this helper.
+# Who the learner is and the moment this helper is for (from your moment sheet).
+learnerAndMoment: ""
 
-# What would be true for the learner? Make it observable.
-desiredOutcome: >-
-  Sam can privately find an agreed school support contact, understand
-  how to ask that person for help, and review the information at his
-  own pace without having to disclose his medical history.
-successMeasure: >-
-  In a simulated walkthrough using a released card, the learner can
-  identify the approved contact's role, how to reach that contact, and
-  one example of when to ask them for help. An adult reviewer confirms
-  those details match the supplied fictional school information.
+# Card: How we would know it worked. From: Desired outcome.
+# What would be true for the learner? Make it something you could observe.
+desiredOutcome: "Not feel overwhelmed, "
+successMeasure: "1) student - ready for next day, they feel prepare, and supported, "
 
-# Card: When it starts.
-trigger: >-
-  A designated adult explicitly requests a help-contact card during
-  return-to-school planning and supplies fictional, school-confirmed
-  contact instructions.
+# Card: When it starts. From: Signals. What makes the helper begin?
+trigger: "Student in conjuction with aprent/caregiver identified need for support before going to school on monday. Parent or caregiver observed child being angry unresposiveness."
 
-# Card: What it uses. No external system access.
+# Card: What it uses. From: Inputs. What information or materials does it need?
 allowedInputs:
-  - "Fictional, educator-confirmed name or role of ONE primary school support contact."
-  - "Fictional, educator-confirmed way to reach that contact, such as a room or school-approved in-person procedure."
-  - "Fictional description of school questions the contact can help with."
-  - "Fictional availability or backup contact details, only if explicitly supplied and confirmed by the adult."
-  - "Exact learner preferences explicitly marked 'Yes' on the learner profile, if subsequently provided and approved."
+  - "student scheudle, teacher names, course syllabus, caourse calendar, tutorial links within their for subjects"
+  - "medication schedule"
+  - "general school respources, schol map, where are bathrooms, libraries, rest room cafeteria"
 
 # Information the helper must NOT use, even if it is available.
 prohibitedInputs:
-  - "Real student names, records, grades, attendance records, contact information, or identifiers."
-  - "Real medical records, treatment information, diagnoses, or clinical assessments."
-  - "Learner profile lines not explicitly marked 'Yes'."
-  - "Unapproved reading levels, math assessments, behavioral labels, or inferred learning abilities."
-  - "Nonverbal, emotional, or health signals inferred from observation, sensors, or response speed."
-  - "Unverified staff assignments, room locations, support arrangements, or contact details."
+  - "names of other students"
+  - "medical information PIIs"
+  - "summarization of medical tests - example okay to know that the kid is tired or had a reaction and neeed bed rest but not atcual medication name, test name etc information"
 
-# Card: What it may know about the learner.
-# The notes listed candidate information, but no exact Yes-marked profile lines.
-# Do not insert any of those candidates until consent is confirmed.
-learnerProfileDetailsAllowed: []
+# Card: What it may know about the learner. From: the learner profile.
+# Only lines the student marked "Yes". Leave everything else out.
+learnerProfileDetailsAllowed:
+  - ""
 
-# Card: What it does. Keep it to one small task.
+# Card: What it does. From: the "tool" steps. List each step.
 steps:
-  - "1. Accept the adult's fictional, confirmed support-contact information."
-  - "2. Check for a primary contact role and a usable way to reach that person."
-  - "3. If required details are missing or conflict, flag them for the adult; do not fabricate a contact or produce a releasable card."
-  - "4. Draft a short 'Where can I ask for help?' card containing the contact role, how to reach them, and what they can help with, using only supplied facts."
-  - "5. Put the editable draft on a separate adult-review screen, clearly labelled DRAFT."
-  - "6. Allow the adult to correct the wording or supplied contact facts, and require explicit approval and release."
-  - "7. Keep the learner screen empty of unreleased draft content; if any draft content changes, immediately revoke prior approval."
-  - "8. After release, display only the approved card with optional expand/collapse and repeat-reading controls."
+  - "1. createsa a pic or succint narrative of what the needs of the student are, summary profile introduction"
+  - "summarization of student's unique needs , automatically email it to teachers, "
+  - "generate stragteis with the teacher to help with the child succeed"
 
-# Card: What it hands back to a person. Human-only decisions.
+# Card: What it hands back to a person. From: the "person" steps.
+# Which decisions stay with people, and with whom?
 humanDecisions:
-  - decision: "Choose and confirm which school adult is responsible for being Sam's primary support contact."
-    madeBy: "Designated school staff, with learner and family input"
-  - decision: "Confirm the correct location, contact procedure, and scope of the adult's role."
-    madeBy: "Designated school educator or counselor"
-  - decision: "Decide whether the wording is appropriate and which contact facts may be released."
-    madeBy: "Designated adult reviewer"
-  - decision: "Decide whether and when to use the approved contact information to request help."
-    madeBy: "Learner"
+  - decision: "introductioon to summarization of student's unique needs, create a prescriptive unique personalizted list of stragtioes based on lesson that day objectoves class wise"
+    madeBy: "teacher"   # e.g. teacher, parent, student
 
-# A person reviews before anything reaches the learner.
-# The precise person was not named in the material shared; confirm this role.
-humanReviewer: "Designated school educator or counselor (proposed reviewer role; group to confirm)"
+# Card: Who checks it works before anything happens.
+# A person who reviews before it reaches the learner or family.
+# (Only the format of this field was changed so the file loads; the words are as provided.)
+humanReviewer: |-
+  caregiver and case manager
+  1. caregiver - checks the veracity of intro and needs statemnet
+  case manager  - case manager can say thats not gonna be the stragetgy we could procide,. vetting the recommendation stragteies, defines the scope on whats doable in the school setting
 
 # Card: What it produces, and for whom.
+# What a person actually receives: a note, a draft, a reminder, a view.
 output:
-  description: >-
-    One short, accessible, editable draft 'Where can I ask for help?'
-    contact card, listing only educator-confirmed school support details.
-    The learner receives no draft and sees only the explicitly released version.
-  # Fixed by workshop rules: do not change.
-  firstRecipient: "Educator or parent reviewer"
-  recipientAfterReview: "Learner, only if the reviewer explicitly approves showing it"
+  description: "a draft of personalozed stratgies that can be edited or updated"
+  # The fields below are fixed by the workshop rules. Don't change them.
+  firstRecipient: "Parent/Caregiver and Case Manager"
+  recipientAfterReview: "Teachers and student. acknowledgement from the teacher they received it and if they need any consult or support to address that"
   editableDraft: true
   hideFromLearnerUntilReview: true
 
 # Card: What the student can see, change, or say no to.
 learnerControls:
   canSee:
-    - "Only the adult-approved, released help-contact card."
-    - "The approved contact role, how to reach them, and what help they offer."
+    - "the actual strgatgies, recommedations, introduction"
   canChange:
-    - "Expand or collapse additional approved instructions without changing the underlying content."
-    - "Pause and return to the card or reread it at their own pace."
+    - "add to the introduction, add to the stragteies"
   canSayNoTo:
-    - "Providing optional personal information or reasons for asking for help."
-    - "Using the helper; the ordinary school support route remains available."
+    - "onpy opportunity to edit and revise in conjuction with their caregiver case manager"
 
 # Card: What the family can see, change, or say no to.
 familyControls:
   canSee:
-    - "The approved fictional card, if shared with the family by an authorized adult."
-    - "The draft only if a parent is the designated adult reviewer for the prototype."
+    - "the actual strgatgies, recommedations, introduction"
   canChange:
-    - "Suggest corrections to contact information for the reviewer to verify; any edit revokes approval."
+    - "add to the introduction, add to the stragteies"
   canSayNoTo:
-    - "Providing optional family, health, or home-context details."
-    - "Including family-provided personal information in the card."
+    - "parents dont have control over curriculum but they should get an explanation on why they cant say no, they should have inout around stratgies but cant say no"
 
-# Card: What it passes to other helpers.
+# Card: What it passes to other helpers. From: Dependencies and the crew sheet handoffs.
 dependenciesAndHandoffs:
-  - "Moment 1 supplies an adult-confirmed support contact and contact procedure before Moment 2."
-  - "After adult release, the approved help-contact card may be shown during Moment 2 as a reference."
-  - "No automated handoff, messages, database, or external connections; the workshop prototype stays local."
+  - "handoffs - create and generate assignments personalized to the student and their ststaus, modified assignment goes to the teacher first. learner concierge helper - here is the originala ssigne,ent how can i change and mofidy it but still meet the lerning objectives shorten asignment modify it to meet learner needs"
+  - "dependent - greeter helper, greeter helper collected information on student condition healyth mood state needs."
 
-# State only group-stated needs and baseline workshop accessibility rules.
+# Learner needs the prototype must support, e.g. screen reader, switch access,
+# captions, audio, larger text. Only list what the learner or group has stated.
 accessibilityNeeds:
-  - "Short, plain-language instructions in small sections."
-  - "Expandable and collapsible detail so the learner can choose how much to read."
-  - "Ability to pause, return, and reread without time pressure or negative feedback."
-  - "No handwriting requirement; usable with simple button activation."
-  - "Semantic HTML, keyboard access, visible focus, labelled controls, and sufficient contrast as required by the workshop."
-  - "Do not assume speech, images, diagnoses, or additional access preferences that the learner has not approved."
+  - "speech to text, text to speech, ability to incorprate various reports from different sources, utlize a stragetgy bank, email identified providers, identiofy case manager and caregiver and task solely deisgnmate dto thsoe only"
+  - "accessibilutt requests related to the stuident, modifying content into grade level comprehension."
+  - "simple and plain language, yes no questions only etc"
 
-# Card: It must never. Roles are attributed only where supported.
+# Card: It must never. At least three. Note which role said each one.
 mustNever:
-  - rule: "Never reveal an unapproved draft to the learner, and never keep an approval valid after draft content changes."
-    raisedBy: "Workshop toolkit rule; no individual collaborator attribution recorded"
-  - rule: "Never use real student data or learner profile details not explicitly marked 'Yes'."
-    raisedBy: "Workshop toolkit rule; no individual collaborator attribution recorded"
-  - rule: "Never invent a support contact, school procedure, or availability when it is missing or uncertain."
-    raisedBy: "Workshop toolkit rule; no individual collaborator attribution recorded"
-  - rule: "Never independently assign a staff member responsibility or decide educational accommodations."
-    raisedBy: "Proposed engineering boundary; collaborator confirmation needed"
+  - rule: "never share ifnormation without Case manager and caregiver authorizaton"
+    raisedBy: "case manager and caregiver"   # e.g. student, parent, teacher
+  - rule: "never proceed with additionbal teacher prescriptive interventions without acknowlegememts by the teacher."
+    raisedBy: "teachers"
+  - rule: "if student feels its not working go back to the drawing baord"
+    raisedBy: "student"
 
-# Situations to try with the prototype. All details are fictional.
+# Situations to try with the prototype. Claude Code turns these into tests.
 tests:
-  expectedCase: >-
-    The reviewer enters a fictional confirmed contact: School Counselor,
-    Room 12, available for questions about getting help across classes.
-    The helper creates a DRAFT card visible only on the adult screen.
-    After explicit approval and release, the learner can open the card,
-    find the contact role and Room 12, and expand or collapse instructions.
-  missingOrUncertainInput: >-
-    The adult enters 'ask the school counselor' but supplies no confirmed
-    location or contact procedure. The helper flags the missing field,
-    asks the adult for clarification, and does not invent a room or
-    release an incomplete card.
-  boundaryCase: >-
-    A learner tries to view a card before adult release and sees no draft.
-    After release, the reviewer changes Room 12 to Room 14; the former
-    approval immediately resets and the updated card stays hidden
-    until the adult approves and releases it again.
+  expectedCase: "a teacher from another wschool requests information about the stduent, a coach from a private like kumon asks for the information"             # A normal situation where the helper should work.
+  missingOrUncertainInput: ""  # Something is missing or unclear: it should ask, not guess.
+  boundaryCase: ""             # Tries to break one "must never" rule: it should refuse.
